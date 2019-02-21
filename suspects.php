@@ -21,5 +21,53 @@ require 'security.php';
 <?php
 require 'navbar.php';
 ?>
+
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <td>ID</td>
+            <td>NAMES</td>
+            <td>IDENTITY</td>
+            <td>GENDER</td>
+            <td>DATE IN</td>
+            <td>TYPE</td>
+        </tr>
+
+        </thead>
+
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td>ahmed</td>
+            <td>576767</td>
+            <td>male</td>
+            <td>11-12-1998</td>
+            <td>theft</td>
+        </tr>
+        <?php
+        require 'db.php';
+        $sql="SELECT * FROM suspects";
+        $results= mysqli_query($conn, $sql);
+        while ($row =mysqli_fetch_assoc($results))
+        {
+            extract($row);
+            echo "<tr>
+            <td>$id</td>
+            <td>$names</td>
+            <td>$identity</td>
+            <td>$gender</td>
+            <td>$date</td>
+            <td>$type</td>
+        </tr>";
+        }
+        ?>
+
+        </tbody>
+
+    </table>
+</div>
+
+
 </body>
 </html>
